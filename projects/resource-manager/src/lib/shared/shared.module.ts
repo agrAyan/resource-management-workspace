@@ -66,6 +66,7 @@ import { MatCardModule } from '@angular/material/card';
     FormsModule,
     MatIconModule,
     MatFormFieldModule,
+    MatInputModule,
     HeaderComponent,
     CalendarComponent,
     FilterComponent,

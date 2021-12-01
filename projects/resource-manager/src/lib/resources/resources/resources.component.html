@@ -1,6 +1,20 @@
-<div ngClass="style" lib-projects>
-  <div [ngClass]="'calendar-info-container'">
-    <input type="text" />
-  </div>
-  <lib-calendar></lib-calendar>
-</div>
+<!-- <div ngClass="style"> -->
+<!-- <div [ngClass]="'calendar-info-container'">
+        <input type="text" />
+
+
+
+    </div> -->
+<!-- <div [ngClass]="'image-display'">
+        <div *ngFor="let resource of resources">
+            <img src="{{resource.resourceImage}}">
+            <h1>{{resource.resourceName}}</h1>
+        </div>
+    </div> -->
+<!-- <div style="display: flex;flex-direction: row;">
+    <div style="">Hello</div> -->
+<lib-calendar [resources]="resources"></lib-calendar>
+<!-- </div> -->
+
+<!-- <lib-resource-card></lib-resource-card> -->
+<!-- </div> -->

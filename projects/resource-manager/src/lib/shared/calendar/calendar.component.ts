@@ -16,6 +16,7 @@ import {
   startOfWeek,
 } from 'date-fns';
 import { Campaign } from '../../models/campaigns/campaign';
+import { Resource } from '../../models/resources/resource';
 import { CalendarService } from '../../services/calendar/calendar.service';
 import { FilterService } from '../../services/filter/filter.service';
 import { HeaderService } from '../../services/header/header.service';
@@ -48,6 +49,7 @@ export class CalendarComponent implements OnInit {
   @Output() statusFilter = new EventEmitter();
 
   @Input() projects: Campaign[] = [];
+  @Input() resources: Resource[]=[];
 
   constructor(
     private _calendarService: CalendarService,
@@ -58,8 +60,7 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(new Date());
-
+  console.log(this.monthDate)
     this._calendarService.currentMonthDates$.subscribe(
       (currentMonthDates: Date[]) => {
         this.currentMonthDates = currentMonthDates;
@@ -86,6 +87,8 @@ export class CalendarComponent implements OnInit {
     this.headerService.tabValue$.subscribe(
       (currentTabValue: string) => (this.tabValue = currentTabValue)
     );
+
+    console.log(this.resources)
   }
 
   formatDate = (date: Date) => {

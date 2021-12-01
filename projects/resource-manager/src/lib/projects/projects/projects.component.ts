@@ -39,10 +39,13 @@ export class ProjectsComponent implements OnInit {
       (weekDate: Date) => (this.weekDate = weekDate)
     );
     this.calendarService.monthDate$.subscribe(
-      (monthDate: Date) => (this.monthDate = monthDate)
+      
+      (monthDate: Date) =>
+        (this.monthDate = monthDate)
     );
     this.calendarService.calendarView$.subscribe(
       (currentCalendarView: string) => (this.calendarView = currentCalendarView)
     );
+    
   }
 }

@@ -29,6 +29,8 @@ export class CalendarService {
   weekDate: Date = new Date();
   weekDate$: BehaviorSubject<Date> = new BehaviorSubject<Date>(this.weekDate);
 
+  
+
   takeWeek(start: Date) {
     let date = startOfWeek(startOfDay(start));
 
@@ -71,6 +73,7 @@ export class CalendarService {
 
       return range;
     };
+    console.log(this.monthDate)
   };
   getWeekData = (date: Date): Date[] => {
     this.currentWeekDates = this.takeWeek(date)();

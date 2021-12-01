@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Resource } from 'projects/resource-manager/src/lib/models/resources/resource';
 import { Campaign } from './models/campaigns/campaign';
 import { ProjectsService } from './services/projects/projects.service';
+import { ResourcesService } from './services/resources/resources.service';
 
 @Component({
   selector: 'app-root',
@@ -134,14 +136,21 @@ export class AppComponent {
   // ];
 
   projects: Campaign[] = [];
-  resources: Object[] = [];
+  resources: Resource[] = [];
 
-  constructor(private projectsService: ProjectsService) {
+  constructor(private projectsService: ProjectsService, private resourceService:ResourcesService) {
     this.projectsService
       .getAllProjects()
       .subscribe((responseProjects: Campaign[]) => {
-        console.log(responseProjects);
+      //  console.log(responseProjects);
         this.projects = responseProjects;
       });
+
+      this.resourceService.getAllResource().subscribe((nresource)=>{
+      console.log(nresource) 
+      this.resources= nresource
+      }
+
+      )
   }
 }

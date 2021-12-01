@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Campaign } from '../../models/campaigns/campaign';
+import { Resource } from '../../models/resources/resource';
 
 @Component({
   selector: 'lib-resources',
@@ -8,5 +10,11 @@ import { Component, OnInit } from '@angular/core';
 export class ResourcesComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {}
+  @Input() resources: Resource[] = [];
+
+  ngOnInit(): void {
+    console.log(this.resources)
+  }
+
+
 }
