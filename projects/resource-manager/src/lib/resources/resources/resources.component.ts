@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Campaign } from '../../models/campaigns/campaign';
+import { Resource } from '../../models/resources/resource';
 
 @Component({
   selector: 'lib-resources',
   templateUrl: './resources.component.html',
-  styleUrls: ['./resources.component.css']
+  styleUrls: ['./resources.component.scss'],
 })
 export class ResourcesComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  @Input() resources: Resource[] = [];
 
   ngOnInit(): void {
+    console.log(this.resources)
   }
+
 
 }

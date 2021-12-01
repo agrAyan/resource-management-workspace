@@ -1,6 +1,7 @@
-import { Component, OnInit,  } from '@angular/core';
-import { lastDayOfMonth, addDays, lastDayOfWeek, startOfMonth, subDays, startOfWeek } from 'date-fns';
-
+import { Component, OnInit, Input } from '@angular/core';
+import { Campaign } from './models/campaigns/campaign';
+import { Resource } from './models/resources/resource';
+import { HeaderService } from './services/header/header.service';
 
 @Component({
   selector: 'lib-resource-manager',
@@ -8,49 +9,21 @@ import { lastDayOfMonth, addDays, lastDayOfWeek, startOfMonth, subDays, startOfW
   styleUrls: ['./resource-manager.component.scss'],
 })
 export class ResourceManagerComponent implements OnInit {
+  tabValue: string;
 
-  monthDate: Date = new Date();
-  activeView: string = "month"
-  buttonValue: string = '';
-  weekDate: Date = new Date();
-  tabValue: string = 'Projects';
-  constructor() { }
+  @Input() projects: Campaign[] = [];
+  @Input() resources: Resource[] = [];
+  
+  constructor(private headerService: HeaderService) {
+    this.tabValue = this.headerService.tabValue;
+  
+  }
 
   ngOnInit(): void {
+    this.headerService.tabValue$.subscribe(
+      (currentTabValue) => (this.tabValue = currentTabValue)
+    );
+   
   }
-
-  onClickForward = () => {
-    let lastDayMonth = lastDayOfMonth(this.monthDate);
-    this.monthDate = addDays(lastDayMonth, 1);
-    let lastDayWeek = lastDayOfWeek(this.weekDate);
-    this.weekDate = addDays(lastDayWeek, 1);
-    if((this.buttonValue == 'next') ||(this.buttonValue == 'prev') || (this.buttonValue =='PREV')){
-      this.buttonValue = 'NEXT';
-    }else{
-      this.buttonValue = 'next'
-    }
-  }
-  onClickBackward = () => {
-    let firstDayMonth = startOfMonth(this.monthDate);
-    this.monthDate = subDays(firstDayMonth, 1);
-    let firstDayWeek = startOfWeek(this.weekDate);
-    this.weekDate = subDays(firstDayWeek,1);
-    if((this.buttonValue == 'prev') || (this.buttonValue =='next') || (this.buttonValue =='NEXT')){
-      this.buttonValue = 'PREV'
-    }else{
-      this.buttonValue = 'prev'
-    }
-  }
-  onToggleButton = (value: string) => {
-    if (value == 'month') {
-      this.activeView = 'month';
-    } else {
-      this.activeView = 'week';
-    }
-  }
-
-  onChangeTab = (tabValue:string) => {
-    this.tabValue = tabValue;
-  }
-
-} 
+  
+}
